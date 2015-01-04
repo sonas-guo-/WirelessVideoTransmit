@@ -1,0 +1,9 @@
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\bin\Debug\WirelessTransmit.exe.config
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\bin\Debug\WirelessTransmit.exe
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\bin\Debug\WirelessTransmit.pdb
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.csprojResolveAssemblyReference.cache
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.Form1.resources
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.Properties.Resources.resources
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.csproj.GenerateResource.Cache
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.exe
+F:\GitRes\WirelessVideoTransmit\WirelessTransmit\WirelessTransmit\obj\Debug\WirelessTransmit.pdb
