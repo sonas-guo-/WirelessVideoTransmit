@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net;
-using System.Net.Sockets;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Threading;
-
+using System.Net;//网络
+using System.Net.Sockets;//套接字
+using System.Windows.Forms.DataVisualization.Charting;//图表控件
+using System.Threading;//线程
+using System.Text.RegularExpressions;//正则表达式
 
 namespace WirelessTransmit
 {
@@ -27,8 +27,8 @@ namespace WirelessTransmit
         public const int SendBufferSize = 2 * 1024;
         public const int ReceiveBufferSize = 8 * 1024;
 
-        public float temperature;
-        public float humidity;
+        public double temperature;
+        public double humidity;
         Queue<double> temperatureQueue = new Queue<double>();
         Queue<double> humidityQueue = new Queue<double>();
 
@@ -48,8 +48,8 @@ namespace WirelessTransmit
                 temperatureQueue.Enqueue(0);
                 humidityQueue.Enqueue(0);
             }
-
-
+            chartUpdateTimer.Enabled = true;
+            chartUpdateTimer.Start();
 
            //chart1.ChartAreas[0].AxisX.Enabled = AxisEnabled.True;
            //chart1.ChartAreas[0].AxisY.Enabled = AxisEnabled.True;
@@ -133,7 +133,7 @@ namespace WirelessTransmit
             
             while (true)
             {
-                /*int dataCount = 0;
+                int dataCount = 0;
                 byte[] buffer = new byte[ReceiveBufferSize];
                 try
                 {
@@ -143,7 +143,7 @@ namespace WirelessTransmit
                     {
                         string sourceStr;
                         sourceStr=System.Text.Encoding.Default.GetString(buffer);
-                        //dataSolution(sourceStr);
+                        dataSolution(sourceStr);
                         //msgBox.AppendText(System.Text.Encoding.Default.GetString(buffer));
                         //msgBox.AppendText("\n");
                     }
@@ -153,7 +153,7 @@ namespace WirelessTransmit
                     MessageBox.Show(ex.Message);
                     break;
                 }
-                */
+                
                 
 
 
@@ -163,8 +163,26 @@ namespace WirelessTransmit
         }
         public void dataSolution(string source)
         {
-
-
+            string patternHT=@"[HT]:[0-9]{1,2}.[0-9]{2,3}";
+            string temp;
+            Regex regHT = new Regex(patternHT, RegexOptions.IgnoreCase);
+            Match m = regHT.Match(source);
+            while(m.Success)
+            {
+                msgBox.AppendText(m.Groups[0].ToString());
+                temp = m.Groups[0].ToString();
+                if (temp[0]=='H'||temp[0]=='h')
+                {
+                    temp = temp.Substring(2, temp.Length - 2);
+                    humidity = double.Parse(temp);
+                }
+                if (temp[0] == 'T' || temp[0] == 't')
+                {
+                    temp = temp.Substring(2, temp.Length - 2);
+                    temperature = double.Parse(temp);
+                }
+                m = m.NextMatch();
+            }
 
 
         }
